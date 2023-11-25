@@ -21,7 +21,17 @@ def diff_files(file1, file2):
             )
             print(''.join(diff))
 
-diff_files('EXPECTED.TXT','OUTPUT_GOT.TXT')
+if __name__ == '__main__':
+    test_files = os.listdir('tests')
+    for input_file in test_files:
+        if input_file.endswith('.in'):
+            output_file = input_file.replace('.in', '.out')
+            print('Testing {}...'.format(input_file))
+            diff_files('tests/'+input_file, 'tests/'+output_file)
+            input()
+
+
+# diff_files('EXPECTED.TXT','OUTPUT_GOT.TXT')
 
 # import json
 # import unittest
