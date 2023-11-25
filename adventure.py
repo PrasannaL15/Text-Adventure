@@ -104,7 +104,7 @@ class GameEngine():
 
         world_map_index = self.location['exits'][direction]
         self.location = world_map[world_map_index]
-        print('You go '+direction,end='.\n')
+        print('You go '+direction,end='.\n\n')
         
     def inventory(self):
         if(len(self.inventory_array) == 0):
