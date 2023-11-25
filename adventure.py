@@ -110,19 +110,20 @@ class GameEngine():
         if(len(self.inventory_array) == 0):
             print("You're not carrying anything.")
             return 'continue'
-        print('Inventory:'+'\n  '.join([x for x in self.inventory_array['items']]))
-
+        print('Inventory:'+'\n  '.join([x for x in self.inventory_array]))
+        return 'continue'
 
     def get(self, item):
         is_item_in_room = item in self.location['items']
 
         if is_item_in_room:
             print('You pick up the {}'.format(item))
-            self.inventory.append(item)
+            self.inventory_array.append(item)
             self.location['items'].remove(item)
         else:
             print(f"There's no {item} anywhere.")
-            return 'continue'
+        
+        return 'continue'
 
 
 
