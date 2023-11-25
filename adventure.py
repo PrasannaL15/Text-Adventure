@@ -60,20 +60,20 @@ class GameEngine():
             
 
     def describe_room(self):
-        print(self.location['name'])
-        print('\n')
+        print('>',self.location['name'])
+        print('')
         print(self.location['desc'])
 
         if 'items' not in self.location:
             self.location['items'] = []
 
         if len(self.location['items']) > 0:
-            print('\n')
+            print('')
             print('Items: '+' '.join([x for x in self.location['items']]))
         
-        print('\n')
+        print('')
         print('Exits: '+' '.join([x for x in self.location['exits']]))
-        print('\n')
+        print('')
         
 
     def print_sorry_verb(self, verb):
@@ -104,8 +104,8 @@ class GameEngine():
 
         world_map_index = self.location['exits'][direction]
         self.location = world_map[world_map_index]
-        print('You go '+direction)
-
+        print('You go '+direction,end='.\n')
+        
     def inventory(self):
         if(len(self.inventory_array) == 0):
             print("You're not carrying anything.")
@@ -133,7 +133,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    
+
 
 
     with open(args.mapfile) as f:
