@@ -110,7 +110,7 @@ class GameEngine():
         if(len(self.inventory_array) == 0):
             print("You're not carrying anything.")
             return 'continue'
-        print('Inventory:'+'\n  '.join([x for x in self.inventory_array]))
+        print('Inventory:\n'+'\n  '.join([x for x in self.inventory_array]))
         return 'continue'
 
     def get(self, item):
