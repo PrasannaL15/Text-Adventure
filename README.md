@@ -66,13 +66,13 @@ No
 
 
 # Example Gameplay with loop.map
-    Run Command 
+1.  Run Command 
 
     ```
     python .\adventure.py .\loop.map
     ```
 
-    Gameplay Output
+2.  Gameplay Output
 
     ```
     > A white room
