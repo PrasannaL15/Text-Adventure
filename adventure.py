@@ -69,7 +69,7 @@ class GameEngine():
 
         if len(self.location['items']) > 0:
             print('')
-            print('Items: '+' '.join([x for x in self.location['items']]))
+            print('Items: '+', '.join([x for x in self.location['items']]))
         
         print('')
         print('Exits: '+' '.join([x for x in self.location['exits']]))
