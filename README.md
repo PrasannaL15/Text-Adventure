@@ -69,11 +69,11 @@ No
     Run Command 
 
     ```
-        python .\adventure.py .\loop.map
+    python .\adventure.py .\loop.map
     ```
 
     Gameplay Output
-    
+
     ```
     > A white room
 
