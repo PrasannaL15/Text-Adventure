@@ -46,6 +46,19 @@ class GameEngine():
             elif len(potential_verbs) == 1:
                 verb = self.verb_list[potential_verbs[0]]
 
+            elif len(potential_verbs) == 0:
+                direction = self.find_anything_in_dict(verb, self.location['exits'])
+                if len(direction) == 1:
+                    verb = 'go'
+                    noun = direction[0]
+                elif len(direction) > 1:
+                    last_direction = direction.pop()
+                    directions = [direction[i] for i in range(len(direction))]
+                    print('Did you want to go '+', '.join([x for x in directions])+' or '+last_direction+'?')
+                    continue
+            
+            
+            
             if verb not in self.verb_list:
                 print('Unknown verb {}'.format(verb))
                 continue

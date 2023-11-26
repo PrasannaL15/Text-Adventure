@@ -1,7 +1,13 @@
 [
  {"name": "A white room", 
   "desc": "You are in a simple room with white walls.",
-  "exits": { "north": 1, "east": 3 }
+  "exits": { "north": 1, "east": 3 },
+  "finish" : 3,
+  "Quest" : {
+    "finish":3,
+    "msg": "Traveller you mission is to free princess who is in one of the rooms,\n All the best on adventure." 
+  }
+
  }
 ,
  {"name": "A blue room", 
@@ -12,12 +18,22 @@
  {"name": "A green room", 
   "desc": "You are in a simple room, with bright green walls.",
   "exits": { "west": 1, "south": 3 },
-  "items": []
+  "items": ["Sword"]
+  
  }
 ,
  {"name": "A red room",
   "desc": "This room is fancy. It's red!",
   "exits": { "north": 2, "west": 0 },
-  "items": ["rose"]
+  "items": ["rose","key"]
+  ,
+  "boss_fight":{
+    "Name" : "Bowser",
+    "Help_text" : "You need to find a way to kill him to get the treasure",
+    "health": 10,
+    "attacks": {"fire": 2, "jump": 5},
+    "Princes": "Peach"
+  }
  }
+
 ]
