@@ -24,7 +24,7 @@ class GameEngine():
             user_choice = ' '
             try:
                 user_choice = input('What would you like to do? ').lower()
-            except EOFError or KeyboardInterrupt:
+            except EOFError :
                 print("Use 'quit' to exit.")
                 continue
             choice_array = user_choice.split(' ', 1)
