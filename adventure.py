@@ -12,9 +12,9 @@ class GameEngine():
         self.start = world_map[0]
         self.inventory_array = []
         self.location = self.start
-        self.verb_list = ['go', 'get', 'look', 'quit','inventory']
-        self.single_word_verbs = ['look', 'quit','inventory']
-        self.verb_msg_map = {'go':'somewhere', 'get':'something'}
+        self.verb_list = ['go', 'get', 'look', 'quit','inventory','help','drop']
+        self.single_word_verbs = ['look', 'quit','inventory','help']
+        self.verb_msg_map = {'go':'somewhere', 'get':'something', 'drop':'something'}
 
     def play(self):
         
@@ -36,6 +36,16 @@ class GameEngine():
                 noun = None
 
             
+            potential_verbs = self.find_anything_in_list(verb, self.verb_list)
+            
+            if len(potential_verbs) > 1:
+                last_verb = self.verb_list[potential_verbs.pop()]
+                verbs = [self.verb_list[i] for i in potential_verbs] 
+                print('Did you want to use '+', '.join([x for x in verbs ])+' or '+last_verb+'?')
+                continue
+            elif len(potential_verbs) == 1:
+                verb = self.verb_list[potential_verbs[0]]
+
             if verb not in self.verb_list:
                 print('Unknown verb {}'.format(verb))
                 continue
@@ -107,8 +117,8 @@ class GameEngine():
 
 
     def handle_input(self, verb, noun):
-
-
+        
+        
         match verb:
             case 'go':
                 return self.go(noun)
@@ -116,12 +126,15 @@ class GameEngine():
                 return self.get(noun)
             case 'look':
                 return 
+            case 'drop':   
+                return self.drop(noun)
             case 'quit':
                 print('Goodbye!')
                 quit()
             case 'inventory':
                 return self.inventory()
-            
+            case 'help':
+                return self.help()
             case _:
                 print('Unknown verb {}'.format(verb))
         
@@ -139,7 +152,26 @@ class GameEngine():
         world_map_index = self.location['exits'][direction]
         self.location = world_map[world_map_index]
         print('You go '+direction,end='.\n\n')
+
+    def drop(self, item):
+        inventory_items = self.inventory_array
+        item_index = self.find_anything_in_list(item, inventory_items)
+        is_item_in_inventory = len(item_index) > 0
+        if is_item_in_inventory:
+            if len(item_index) > 1:
+                last_item = inventory_items[item_index.pop()]
+                items = [inventory_items[i] for i in item_index] 
+                print('Did you want to drop the '+', '.join([x for x in items ])+' or the '+last_item+'?')
+                return 'continue'
+            item_index = item_index[0]
+            print('You drop the {}.'.format(inventory_items[item_index]))
+            self.location['items'].append(inventory_items[item_index])
+            inventory_items.pop(item_index)
+        else:
+            print(f"You're not carrying {item}.")
         
+        return 'continue'
+
     def inventory(self):
         if(len(self.inventory_array) == 0):
             print("You're not carrying anything.")
@@ -167,7 +199,11 @@ class GameEngine():
         
         return 'continue'
 
-
+    def help(self):
+        print('You can use the following verbs to interact with this amazing world:')
+        for verb in self.verb_list:
+            print('  ',verb, '{'+self.verb_msg_map[verb]+'}' if verb in self.verb_msg_map else '')
+        return 'continue'
 
 if __name__ == '__main__':
 
