@@ -31,7 +31,7 @@ class GameEngine():
             verb = choice_array[0]
             
             if len(choice_array) > 1:
-                noun = choice_array[1]
+                noun = choice_array[1].rstrip()
             else:
                 noun = None
 
@@ -75,11 +75,39 @@ class GameEngine():
         print('Exits: '+' '.join([x for x in self.location['exits']]))
         print('')
         
-
     def print_sorry_verb(self, verb):
         print(f"Sorry, you need to '{verb}' {self.verb_msg_map[verb]}.")   
 
+    def find_anything_in_dict(self,item,input_dict):
+        match_index = []
+        assert type(input_dict) == dict, f"Maybe you want to use find_anything_in_{type(input_dict).__name__} instead of find_anything_in_dict()"
+        for i in input_dict:
+            
+            if item == i:
+                return [i]
+            if item in i:
+                match_index.append(i)
+        # print(match_index)
+        return match_index
+
+    def find_anything_in_list(self, item, input_list):
+        # print(input_list)
+        assert type(input_list) == list, f'maybe you want to use find_anything_in_{type(input_list).__name__} instead of find_anything_in_list() '
+
+        match_index = []
+        for i in input_list:
+            
+            if item == i:
+                return [input_list.index(i)]
+            if item in i:
+                match_index.append(input_list.index(i))
+        return match_index
+
+
+
+
     def handle_input(self, verb, noun):
+
 
         match verb:
             case 'go':
@@ -98,6 +126,12 @@ class GameEngine():
                 print('Unknown verb {}'.format(verb))
         
     def go(self, direction):
+        direction_matches = self.find_anything_in_dict(direction, self.location['exits'])
+        if len(direction_matches) > 1:
+            last_direction = direction_matches.pop()
+            # print(direction_matches,last_direction)
+            print('Did you want to go '+', '.join([x for x in direction_matches])+' or '+last_direction+'?')
+            return 'continue'
         if direction not in self.location['exits']:
             print(f"There's no way to go {direction}.")
             return 'continue'
@@ -113,13 +147,21 @@ class GameEngine():
         print('Inventory:\n  '+'\n  '.join([x for x in self.inventory_array]))
         return 'continue'
 
+    
     def get(self, item):
-        is_item_in_room = item in self.location['items']
-
+        location_items = self.location['items']
+        item_index = self.find_anything_in_list(item, location_items)
+        is_item_in_room = len(item_index) > 0
         if is_item_in_room:
-            print('You pick up the {}.'.format(item))
-            self.inventory_array.append(item)
-            self.location['items'].remove(item)
+            if len(item_index) > 1:
+                last_item = location_items[item_index.pop()]
+                items = [location_items[i] for i in item_index] 
+                print('Did you want to get the '+', '.join([x for x in items ])+' or the '+last_item+'?')
+                return 'continue'
+            item_index = item_index[0]
+            print('You pick up the {}.'.format(location_items[item_index]))
+            self.inventory_array.append(location_items[item_index])
+            location_items.pop(item_index)
         else:
             print(f"There's no {item} anywhere.")
         
