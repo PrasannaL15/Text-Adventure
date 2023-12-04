@@ -89,56 +89,107 @@ I faced a challenge in making code modular so that I can keep the original funct
 - **Description:** Enables players to drop items from their inventory to interact with the environment.
 - **Usage Example:** 'drop sword' to remove the sword from the inventory.
 
+## A Map which implements all features ([my_map.map](my_map.map))
+
 # Example Gameplay with loop.map
 
 1.  Run Command
 
     ```
-    python .\adventure.py .\loop.map
+    python .\adventure.py .\my_map.map
     ```
 
 2.  Gameplay Output
 
     ```
-    > A white room
+    > Hidden Leaf Village
 
-    You are in a simple room with white walls.
+    You are in the heart of the Hidden Leaf Village, surrounded by towering trees and ninja structures.
 
-    Exits: north east
+    Items: shuriken, medicinal herbs, ninja scroll
 
-    What would you like to do? go west
-    There's no way to go west.
-    What would you like to do? go
-    Sorry, you need to 'go' somewhere.
+    Exits: north east south west
+
     What would you like to do? go north
     You go north.
 
-    > A blue room
+    > Training Grounds
 
-    This room is simple, too, but with blue walls.
+    This vast area is designated for ninja training, with open fields and various obstacle courses.
 
-    Exits: east south
+    Items: throwing knives, training dummy, smoke bomb
 
+    Exits: south west
+
+    What would you like to do? g s
+    Did you want to use go or get?
+    What would you like to do? go s
+    Did you want to go south or west?
+    What would you like to do? south
+    You go south.
+
+    > Hidden Leaf Village
+
+    You are in the heart of the Hidden Leaf Village, surrounded by towering trees and ninja structures.
+
+    Items: shuriken, medicinal herbs, ninja scroll
+
+    Exits: north east south west
+
+    What would you like to do? help
+    You can use the following verbs to interact with this amazing world:
+    Verb       Noun         Description
+    ---------- ------------ --------------------------------------------------
+    go         {somewhere}  The go method moves the player to the specified direction.
+    get        {something}  The get method picks up an item from the current room.
+    look                    The look method prints the description of the current room.
+    quit                    The quit method exits the game.
+    inventory               The inventory method displays the player's inventory.
+    help                    The help method displays the list of available verbs for the player.
+    drop       {something}  The drop method drops an item from the player's inventory.
+    What would you like to do? look
+    > Hidden Leaf Village
+
+    You are in the heart of the Hidden Leaf Village, surrounded by towering trees and ninja structures.
+
+    Items: shuriken, medicinal herbs, ninja scroll
+
+    Exits: north east south west
+
+    What would you like to do? get shuri
+    You pick up the shuriken.
     What would you like to do? go south
     You go south.
 
-    > A white room
+    > Marketplace
 
-    You are in a simple room with white walls.
+    A bustling marketplace where villagers and ninjas gather to buy and sell goods.
+
+    Items: rare herbs, ninja tools, souvenirs
 
     Exits: north east
 
-    What would you like to do? GO EAST
-    You go east.
+    What would you like to do? get rare
+    You pick up the rare herbs.
+    What would you like to do? inv
+    Inventory:
+    shuriken
+    rare herbs
+    What would you like to do? drop shuriken
+    You drop the shuriken.
+    What would you like to do? look
+    > Marketplace
 
-    > A red room
+    A bustling marketplace where villagers and ninjas gather to buy and sell goods.
 
-    This room is fancy. It's red!
+    Items: ninja tools, souvenirs, shuriken
 
-    Items: rose
+    Exits: north east
 
-    Exits: north west
-
-    What would you like to do?
+    What would you like to do? d r
+    You drop the rare herbs.
+    What would you like to do? quit
+    Goodbye!
+    PS C:\Users\limay\OneDrive\Desktop\GitHub\Text-Adventure>
 
     ```
