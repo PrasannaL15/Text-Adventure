@@ -63,7 +63,7 @@ I created test.py which compares the expected output with the actual output rece
 
 No
 
-### issue or bug solved
+## Iissue or bug solved
 
 I faced a challenge in making code modular so that I can keep the original functionality while implementing the extensions
 
