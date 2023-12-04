@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Hidden Leaf Village",
+    "desc": "You are in the heart of the Hidden Leaf Village, surrounded by towering trees and ninja structures.",
+    "exits": { "north": 1, "east": 2, "south": 3, "west": 4 },
+    "items": ["shuriken", "medicinal herbs", "ninja scroll"]
+  },
+  {
+    "name": "Training Grounds",
+    "desc": "This vast area is designated for ninja training, with open fields and various obstacle courses.",
+    "exits": { "south": 0, "west": 5 },
+    "items": ["throwing knives", "training dummy", "smoke bomb"]
+  },
+  {
+    "name": "Hokage's Office",
+    "desc": "You find yourself in the Hokage's office, a room adorned with scrolls and ninja artifacts.",
+    "exits": { "west": 0, "southwest": 6 },
+    "items": ["Hokage hat", "official decree", "sealing scroll"]
+  },
+  {
+    "name": "Marketplace",
+    "desc": "A bustling marketplace where villagers and ninjas gather to buy and sell goods.",
+    "exits": { "north": 0, "east": 7 },
+    "items": ["rare herbs", "ninja tools", "souvenirs"]
+  },
+  {
+    "name": "Ninja Academy",
+    "desc": "This is where young ninjas learn the basics of the ninja arts under the guidance of experienced instructors.",
+    "exits": { "east": 0, "northeast": 5 },
+    "items": ["textbooks", "student scrolls", "training gear"]
+  },
+  {
+    "name": "Forest of Shadows",
+    "desc": "A dense forest filled with shadows and mysteries, rumored to be haunted by ancient spirits.",
+    "exits": { "east": 1, "southeast": 4 },
+    "items": ["mystical flower", "spirit essence", "shadow cloak"]
+  },
+  {
+    "name": "Ramen Shop",
+    "desc": "A cozy ramen shop where ninjas gather to enjoy delicious bowls of ramen after a long day of training.",
+    "exits": { "northeast": 2, "west": 7 },
+    "items": ["ramen bowl", "ninja headband", "scroll of jutsu"]
+  },
+  {
+    "name": "Hidden Mist Village",
+    "desc": "You have entered the territory of the Hidden Mist Village, shrouded in mist and mystery.",
+    "exits": { "west": 3, "northwest": 6 },
+    "items": ["misty potion", "hidden blade", "waterproof cloak"]
+  }
+]
